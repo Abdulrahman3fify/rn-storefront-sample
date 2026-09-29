@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/button';
-import { ErrorView, LoadingView } from '@/components/state-views';
+import { EmptyView, ErrorView, LoadingView } from '@/components/state-views';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
@@ -18,6 +18,8 @@ export function ProductScreen({ id }: { id: number }) {
   const add = useCartStore((s) => s.add);
   const inCart = useCartStore((s) => s.lines[id]?.quantity ?? 0);
 
+  // A malformed deep link (/product/abc) disables the query, which would otherwise stay pending forever.
+  if (!Number.isInteger(id)) return <EmptyView message="Product not found." />;
   if (product.isPending) return <LoadingView />;
   if (product.isError) {
     return <ErrorView message="We couldn't load this product." onRetry={() => product.refetch()} />;

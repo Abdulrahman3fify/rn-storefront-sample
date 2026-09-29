@@ -61,6 +61,7 @@ Code is grouped by feature, not by file type, so everything the cart needs lives
 | `api.test.ts` | parsing and cents conversion, search URL encoding, rejecting a broken contract, `HttpError` on 5xx, pagination end |
 | `money.test.ts` | float-safe conversion and formatting |
 | `cart-screen.test.tsx` | the cart as a user sees it: subtotal updates, "+" disabled at stock, removal to the empty state |
+| `product-screen.test.tsx` | a malformed deep link shows "not found" instead of loading forever |
 
 CI runs typecheck, lint, tests and `expo-doctor` on every push and pull request.
 

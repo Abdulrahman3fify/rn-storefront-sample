@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, TextInput, View } from 'react-native';
 
+import { Button } from '@/components/button';
 import { EmptyView, ErrorView, LoadingView } from '@/components/state-views';
 import { ThemedView } from '@/components/themed-view';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
@@ -33,7 +34,7 @@ export function CatalogScreen() {
       </View>
       {products.isPending ? (
         <LoadingView />
-      ) : products.isError ? (
+      ) : products.isError && !products.data ? (
         <ErrorView message="We couldn't load products." onRetry={() => products.refetch()} />
       ) : (
         <FlatList
@@ -49,7 +50,18 @@ export function CatalogScreen() {
           refreshing={products.isRefetching && !products.isFetchingNextPage}
           onRefresh={() => products.refetch()}
           ListEmptyComponent={<EmptyView message={`No products match “${query}”.`} />}
-          ListFooterComponent={products.isFetchingNextPage ? <ActivityIndicator /> : null}
+          ListFooterComponent={
+            products.isFetchingNextPage ? (
+              <ActivityIndicator />
+            ) : products.isFetchNextPageError ? (
+              // Keep what's loaded; retry only the page that failed.
+              <Button
+                variant="secondary"
+                label="Couldn't load more. Try again"
+                onPress={() => products.fetchNextPage()}
+              />
+            ) : null
+          }
         />
       )}
     </ThemedView>

@@ -1,5 +1,7 @@
 # Storefront: a React Native / Expo sample
 
+[![CI](https://github.com/Abdulrahman3fify/rn-storefront-sample/actions/workflows/ci.yml/badge.svg)](https://github.com/Abdulrahman3fify/rn-storefront-sample/actions/workflows/ci.yml)
+
 A small shopping app: browse a catalog, search it, open a product, and keep a cart that survives restarts. It runs on iOS, Android and web from one codebase.
 
 I built it to show how I structure a production React Native app. My client work is under NDA, so this repo shows the same patterns on public data from [DummyJSON](https://dummyjson.com).

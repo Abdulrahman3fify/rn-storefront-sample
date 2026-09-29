@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rn-storefront-sample",
+    "name": "Storefront",
     "slug": "rn-storefront-sample",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rnstorefrontsample",
+    "scheme": "storefront",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
